@@ -1,0 +1,18 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Carregar dados
+df = pd.read_csv('dados_vendas.csv')
+
+# Análise exploratória
+print(df.head())
+print(df.describe())
+
+# Visualizações
+df['Data'] = pd.to_datetime(df['Data'])
+df.set_index('Data', inplace=True)
+df.resample('M').sum()['Vendas'].plot()
+plt.title('Vendas Mensais')
+plt.xlabel('Data')
+plt.ylabel('Vendas')
+plt.show()
